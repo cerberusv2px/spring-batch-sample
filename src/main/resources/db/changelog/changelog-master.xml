@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+  <changeSet id="create-hibernate-sequence" author="sujin">
+    <sql>
+      CREATE SEQUENCE IF NOT EXISTS "hibernate_sequence"
+    </sql>
+  </changeSet>
+
+  <changeSet id="create-students" author="sujinn">
+    <preConditions onFail="MARK_RAN">
+      <not>
+        <tableExists tableName="users"/>
+      </not>
+    </preConditions>
+    <createTable tableName="users">
+      <column name="id" type="BIGINT" autoIncrement="true">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="name" type="VARCHAR">
+        <constraints nullable="false"/>
+      </column>
+      <column name="email" type="VARCHAR">
+        <constraints nullable="false"/>
+      </column>
+      <column name="dob" type="DATE">
+        <constraints nullable="false"/>
+      </column>
+      <column name="created_at" type="TIMESTAMP" defaultValueDate="CURRENT_TIMESTAMP"/>
+      <column name="updated_at" type="TIMESTAMP" defaultValueDate="CURRENT_TIMESTAMP"/>
+      <column name="modified_at" type="TIMESTAMP">
+        <constraints nullable="true"/>
+      </column>
+      <column name="created_by" type="BIGINT">
+        <constraints nullable="true"/>
+      </column>
+      <column name="version" type="INT" defaultValueNumeric="0"/>
+    </createTable>
+  </changeSet>
+</databaseChangeLog>
