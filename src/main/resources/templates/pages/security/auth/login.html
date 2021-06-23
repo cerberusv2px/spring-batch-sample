@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout/plain :: plainLayout('Sign In', ~{::#content})}">
+<meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Sign In | JSM - Job Scheduler and Monitoring</title>
+</head>
+<body>
+
+<div class="col-md-8" id="content">
+  <div class="card-group">
+    <div class="card p-4">
+      <div class="card-body">
+        <form th:name="loginForm" th:action="@{/login}" method="post">
+          <h1>Login</h1>
+          <p class="text-muted">Sign In to your account</p>
+          <p th:if="${param.error}" class="text-muted text-danger">
+            Invalid Username or Password
+          </p>
+          <p th:if="${param.logout}" class="text-muted">
+            You have been logged out.
+          </p>
+          <p th:if="${error}" class="text-muted text-danger" th:text="${error}">
+          </p>
+          <p th:if="${success}" class="text-muted text-success" th:text="${success}">
+          </p>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="c-icon cil-authUser"></i></span>
+            </div>
+            <input class="form-control" type="text" name="username"
+                   required placeholder="Username"/>
+          </div>
+          <div class="input-group mb-4">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="c-icon cil-lock-locked"></i></span>
+            </div>
+            <input class="form-control" type="password" name="password"
+                   required placeholder="Password">
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <button class="btn btn-primary px-4" type="submit">Login</button>
+            </div>
+            <div class="col-6 text-right">
+              <a class="btn btn-link text-secondary px-0" type="button"
+                 th:href="@{/forget-password}">Forgot password?
+              </a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="card text-white bg-primary py-5 d-md-down-none" style="width:44%">
+      <div class="card-body text-center">
+        <div>
+          <h2>Sign up</h2>
+          <p>We are creating account on demand which will be handled by our Administrator.
+            Please drop request to Administrator to create an Account for you.</p>
+          <button class="btn btn-lg btn-outline-light mt-3"
+                  type="button">Request to Administrator!
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

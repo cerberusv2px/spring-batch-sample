@@ -32,8 +32,8 @@
     <url>git@git.evolveasia.co:dataops/cloudview/cloudlake.git</url>
   </scm>
 
-  <groupId>com.evolveasia.cloudview</groupId>
-  <artifactId>cloudlake</artifactId>
+  <groupId>com.sujin.spring</groupId>
+  <artifactId>spring</artifactId>
   <version>2021.6.0.6.RELEASE-SNAPSHOT</version>
   <name>cloudlake</name>
   <description>CloudLake for handing all about data for ROSIA Ecosystem</description>

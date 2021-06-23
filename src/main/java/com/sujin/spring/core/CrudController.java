@@ -96,7 +96,7 @@ public abstract class CrudController<E extends BaseEntity, D, I> {
         //final User u = (User) auth.getPrincipal();
 
         final E entity = mapper.mapDtoToEntity(dto);
-        //entity.setCreatedBy(u.getId());
+        entity.setCreatedBy(1L);
 
         try {
             beforeSave(entity);
@@ -163,7 +163,7 @@ public abstract class CrudController<E extends BaseEntity, D, I> {
         final E entity = mapper.mapDtoToEntity(dto);
 
 //        final User u = (User) auth.getPrincipal();
-//        entity.setModifiedBy(u.getId());
+        entity.setModifiedBy(1L);
 
         try {
             beforeSave(entity);

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout/base :: baseLayout('Create - Customers', ~{::#breadcrumb}, ~{::#content})}">
+<head>
+  <title>Create - Distributors | Billing | JSM - Job Scheduler and Monitoring</title>
+</head>
+<body class="c-app c-dark-theme">
+
+<div class="c-subheader px-3" id="breadcrumb">
+  <!-- Breadcrumb-->
+  <ol class="breadcrumb border-0 m-0">
+    <li class="breadcrumb-item">Home</li>
+    <li class="breadcrumb-item">Configuration</li>
+    <li class="breadcrumb-item active"><a th:href="@{/users}">Users</a></li>
+    <li class="breadcrumb-item active">Create</li>
+    <!-- Breadcrumb Menu-->
+  </ol>
+</div>
+
+<section id="content">
+  <div class="card">
+    <div class="card-header">Create Connection</div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-12" th:if="${error}">
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <span th:text="${error}"></span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </div>
+        <div class="col-md-12 col-lg-12">
+          <form action="#" th:action="@{/users/create}" method="post"
+                th:object="${dto}">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" class="form-control"
+                     th:classappend="${#fields.hasErrors('name')? 'is-invalid' : ''}" id="name"
+                     aria-describedby="Name" required
+                     th:field="*{name}" placeholder="Name">
+              <div class="invalid-feedback" th:if="${#fields.hasErrors('name')}"
+                   th:errors="*{name}">
+              </div>
+            </div>
+
+
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" class="form-control" id="email"
+                     aria-describedby="Email" required
+                     th:field="*{email}" placeholder="Email">
+              <div class="invalid-feedback" th:if="${#fields.hasErrors('email')}"
+                   th:errors="*{email}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="dob">Date of birth</label>
+              <input type="date" class="form-control" id="dob"
+                     aria-describedby="Date of birth" required
+                     th:field="*{dob}" placeholder="Date of birth">
+              <div class="invalid-feedback" th:if="${#fields.hasErrors('dob')}"
+                   th:errors="*{dob}">
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Save</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>

@@ -1,14 +1,7 @@
 package com.sujin.spring;
 
-import java.time.LocalDate;
-import java.util.List;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.sujin.spring.studennt.Student;
 
 @SpringBootApplication
 public class Application {

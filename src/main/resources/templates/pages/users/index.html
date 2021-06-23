@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout/base :: baseLayout('Connections', ~{::#breadcrumb}, ~{::#content})}">
+<head>
+  <title>Distributors | Billing | JSM - Job Scheduler and Monitoring</title>
+</head>
+<body class="c-app c-dark-theme">
+
+<div class="c-subheader px-3" id="breadcrumb">
+  <!-- Breadcrumb-->
+  <ol class="breadcrumb border-0 m-0">
+    <li class="breadcrumb-item">Home</li>
+    <li class="breadcrumb-item">Configuration</li>
+    <li class="breadcrumb-item active">Users</li>
+    <!-- Breadcrumb Menu-->
+  </ol>
+</div>
+
+<section id="content" th:with="baseUrl=@{/users}">
+  <div class="card">
+    <div class="card-header">Users</div>
+    <div class="card-body">
+      <div th:if="${success}" class="float-left">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          <span th:text="${success}"></span>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      </div>
+      <div th:if="${error}" class="float-left">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <span th:text="${error}"></span>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      </div>
+      <div class="float-right">
+        <a class="btn btn-outline-primary text-white" th:href="@{/users/create}">
+          <i class="c-icon cil-plus"></i>
+        </a>
+      </div>
+    </div>
+    <div class="card-body">
+      <div th:if="${records.isEmpty()}">
+        No records found!
+      </div>
+      <div th:if="${!records.isEmpty()}">
+        <table class="table table-responsive-lg table-responsive-md c-table-bordered">
+          <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>DOB</th>
+            <th>Action</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr th:each="record, stat : ${records}">
+            <td th:text="${stat.count}"></td>
+            <td th:text="${record.name}"></td>
+            <td th:text="${record.email}"></td>
+            <td th:text="${record.dob}"></td>
+            <td>
+              <a class="text-decoration-none text-white btn btn-primary mb-1"
+                 data-toggle="tooltip" data-title="Edit"
+                 th:href="@{/users/{id}/update(id =${record.id})}">
+                <i class="c-icon cil-pencil"></i>
+              </a>
+              <form class="d-inline"
+                    th:action="@{/users/{id}/delete(id=${record.id})}"
+                    method="POST">
+                <button type="submit" class="btn btn-danger" data-toggle="tooltip"
+                        data-title="Remove">
+                  <i class="c-icon cil-backspace"></i>
+                </button>
+              </form>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    (function ($) {
+      $('[data-toggle="tooltip"]').tooltip();
+    })($);
+  </script>
+</section>
+</body>
+</html>
